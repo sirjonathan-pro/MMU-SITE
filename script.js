@@ -10,7 +10,7 @@ import {
 
 // 1. Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
+    apiKey: "AIzaSyD2OLXESL-u5V9VRpGPuHvilCUpCsiEdEk",
     authDomain: "mountains-web.firebaseapp.com",
     projectId: "mountains-web",
     storageBucket: "mountains-web.firebasestorage.app",
