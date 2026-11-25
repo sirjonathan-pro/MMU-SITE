@@ -93,3 +93,110 @@ document.querySelectorAll("#navigation a").forEach(link => {
             .classList.remove("active");
     });
 });
+
+// 7. MMU Student Registration
+const studentForm = document.getElementById(
+    "studentRegistrationForm"
+);
+
+if (studentForm) {
+
+    studentForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const student = {
+            fullName: document.getElementById("studentName").value.trim(),
+            registrationNumber: document.getElementById("registrationNumber").value.trim(),
+            email: document.getElementById("studentEmail").value.trim(),
+            phone: document.getElementById("studentPhone").value.trim(),
+            course: document.getElementById("studentCourse").value.trim(),
+            studyYear: document.getElementById("studyYear").value,
+            createdAt: serverTimestamp()
+        };
+
+        const result = document.getElementById(
+            "registrationResult"
+        );
+
+        const button = studentForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        button.disabled = true;
+        button.textContent = "Registering...";
+
+        try {
+
+            await addDoc(collection(db, "students"), student);
+
+            result.textContent =
+                "Registration submitted successfully!";
+
+            studentForm.reset();
+
+        } catch (error) {
+
+            console.error("Registration error:", error);
+
+            result.textContent =
+                "Registration failed. Please try again.";
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent = "Register Student";
+
+        }
+    });
+}
+// STUDENT REGISTRATION FORM
+
+const studentForm = document.getElementById(
+    "studentRegistrationForm"
+);
+
+if (studentForm) {
+
+    studentForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const student = {
+            fullName: document.getElementById("studentName").value.trim(),
+            registrationNumber: document.getElementById("registrationNumber").value.trim(),
+            email: document.getElementById("studentEmail").value.trim(),
+            phone: document.getElementById("studentPhone").value.trim(),
+            course: document.getElementById("studentCourse").value.trim(),
+            studyYear: document.getElementById("studyYear").value,
+            createdAt: serverTimestamp()
+        };
+
+        const result = document.getElementById("registrationResult");
+        const button = studentForm.querySelector('button[type="submit"]');
+
+        button.disabled = true;
+        button.textContent = "Registering...";
+
+        try {
+
+            await addDoc(collection(db, "students"), student);
+
+            result.textContent = "Student registered successfully!";
+            studentForm.reset();
+
+        } catch (error) {
+
+            console.error("Registration error:", error);
+            result.textContent = "Registration failed. Please try again.";
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent = "Register Student";
+
+        }
+
+    });
+
+}
