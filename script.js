@@ -1,4 +1,4 @@
-
+I 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 
 import {
@@ -66,13 +66,11 @@ if (contactForm) {
             formResult.textContent =
                 "Thank you, " + name + "! Your message has been sent successfully.";
 
-            contactForm.reset();
-
-        } catch (error) {
-            console.error("Firebase error:", error);
-            formResult.textContent =
-                "Sorry, your message could not be sent. Please try again.";
-        } finally {
+            catch(error) {
+    console.error("Registration error:", error);
+    result.textContent = "Error: " + error.code;
+        }
+        finally {
             submitButton.disabled = false;
             submitButton.textContent = "Send Message";
         }
