@@ -1,0 +1,273 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #fffdf3;
+    color: #26352a;
+    line-height: 1.7;
+}
+
+/* HEADER */
+header {
+    background: #064b2c;
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-icon {
+    background: #d9ad38;
+    color: #064b2c;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.logo h2 {
+    font-size: 17px;
+}
+
+.logo p {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e5bd51;
+}
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 28px;
+}
+
+/* HERO */
+.hero {
+    min-height: 480px;
+    background:
+        linear-gradient(rgba(0,50,25,0.78),
+        rgba(0,50,25,0.78)),
+        url("https://images.unsplash.com/photo-1562774053-701939374585?w=1600");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 50px 20px;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    background: #d5a82e;
+    color: #173b25;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #f0ca64;
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: white;
+}
+
+/* SECTIONS */
+.section {
+    padding: 65px 7%;
+    text-align: center;
+}
+
+.section h2 {
+    color: #064b2c;
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.about p {
+    max-width: 850px;
+    margin: 15px auto;
+}
+
+/* FACULTIES */
+.faculties {
+    background: #f0f2eb;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #07502d;
+    margin-bottom: 12px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 7px;
+    margin-top: 15px;
+}
+
+/* PROGRAMMES */
+.programmes {
+    background: white;
+}
+
+/* ADMISSIONS */
+.admissions {
+    background: #064b2c;
+    color: white;
+}
+
+.admissions h2 {
+    color: #e5bd51;
+}
+
+/* NEWS */
+.news {
+    background: #f7f7f2;
+}
+
+/* CONTACT */
+.contact form {
+    max-width: 550px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea {
+    padding: 13px;
+    border: 1px solid #b5b5a5;
+    border-radius: 5px;
+    width: 100%;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+/* FOOTER */
+footer {
+    background: #032c19;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 850px) {
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding-top: 20px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        padding: 8px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h2 {
+        font-size: 13px;
+    }
+
+    .section {
+        padding: 45px 5%;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+}
