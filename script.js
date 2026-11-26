@@ -1,4 +1,4 @@
-I 
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 
 import {
@@ -18,7 +18,7 @@ const firebaseConfig = {
     appId: "1:120915365336:web:bc4124f2754e303d76b6ad"
 };
 
-// 2. Initialize Firebase ONCE
+// 2. Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -37,7 +37,9 @@ window.toggleMenu = function () {
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
+
     contactForm.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
         const name = document.getElementById("name").value.trim();
@@ -48,7 +50,7 @@ if (contactForm) {
         const submitButton = contactForm.querySelector('button[type="submit"]');
 
         if (!name || !email || !message) {
-            formResult.textContent = "Please fill in all fields.";
+            alert("Please fill in all fields.");
             return;
         }
 
@@ -56,27 +58,40 @@ if (contactForm) {
         submitButton.textContent = "Sending...";
 
         try {
+
             await addDoc(collection(db, "messages"), {
-                name,
-                email,
-                message,
+                name: name,
+                email: email,
+                message: message,
                 createdAt: serverTimestamp()
             });
 
-            formResult.textContent =
-                "Thank you, " + name + "! Your message has been sent successfully.";
+            alert("Thank you, " + name + "! Your message has been sent successfully.");
+
+            if (formResult) {
+                formResult.textContent = "Message sent successfully!";
+            }
+
+            contactForm.reset();
 
         } catch (error) {
+
             console.error("Contact form error:", error);
-            formResult.textContent = "Error: " + error.message;
+
+            alert("Message failed to send. Please try again.");
+
+            if (formResult) {
+                formResult.textContent = "Error: " + error.message;
+            }
 
         } finally {
+
             submitButton.disabled = false;
             submitButton.textContent = "Send Message";
+
         }
     });
 }
-
 
 // 5. Close mobile menu
 document.querySelectorAll("#navigation a").forEach(link => {
@@ -85,41 +100,3 @@ document.querySelectorAll("#navigation a").forEach(link => {
     });
 });
 
-// 6. Student registration form
-const studentForm = document.getElementById("studentRegistrationForm");
-
-if (studentForm) {
-    studentForm.addEventListener("submit", async function(event) {
-        event.preventDefault();
-
-        const result = document.getElementById("registrationResult");
-        const button = studentForm.querySelector('button[type="submit"]');
-
-        const student = {
-            fullName: document.getElementById("studentName").value.trim(),
-            registrationNumber: document.getElementById("registrationNumber").value.trim(),
-            email: document.getElementById("studentEmail").value.trim(),
-            phone: document.getElementById("studentPhone").value.trim(),
-            course: document.getElementById("studentCourse").value.trim(),
-            studyYear: document.getElementById("studyYear").value,
-            createdAt: serverTimestamp()
-        };
-
-        button.disabled = true;
-        button.textContent = "Registering...";
-
-        try {
-            await addDoc(collection(db, "students"), student);
-
-            result.textContent = "Student registered successfully!";
-            studentForm.reset();
-
-        } catch (error) {
-            console.error("Registration error:", error);
-            result.textContent = "Error: " + error.code + " - " + error.message;
-        } finally {
-            button.disabled = false;
-            button.textContent = "Register Student";
-        }
-    });
-}
