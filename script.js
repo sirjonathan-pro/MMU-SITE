@@ -115,7 +115,7 @@ if (studentForm) {
 
         } catch (error) {
             console.error("Registration error:", error);
-            result.textContent = "Registration failed. Please try again.";
+            result.textContent = "Error: " + error.code + " - " + error.message;
         } finally {
             button.disabled = false;
             button.textContent = "Register Student";
