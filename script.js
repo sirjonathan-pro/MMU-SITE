@@ -66,16 +66,17 @@ if (contactForm) {
             formResult.textContent =
                 "Thank you, " + name + "! Your message has been sent successfully.";
 
-            catch(error) {
-    console.error("Registration error:", error);
-    result.textContent = "Error: " + error.code;
-        }
-        finally {
+        } catch (error) {
+            console.error("Contact form error:", error);
+            formResult.textContent = "Error: " + error.message;
+
+        } finally {
             submitButton.disabled = false;
             submitButton.textContent = "Send Message";
         }
     });
 }
+
 
 // 5. Close mobile menu
 document.querySelectorAll("#navigation a").forEach(link => {
